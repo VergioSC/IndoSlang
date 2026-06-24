@@ -1,0 +1,328 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="IndoSlang.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="Images/OWI SPARKLE EYE BIG.png" />
+    <title>IndoSlang - <%: Page.Title %></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --cream: #FAF4E8;
+            --cream-mid: #F2E9D4;
+            --brown: #3B2A1A;
+            --brown-mid: #6B4C2A;
+            --accent: #D97B2B;
+            --accent-light: #F0A44A;
+            --green: #4A7C59;
+            --white: #FFFFFF;
+            --shadow: rgba(59,42,26,0.12);
+            --radius: 16px;
+            --font-display: 'Fredoka', sans-serif;
+            --font-body: 'Nunito', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--cream);
+            color: var(--brown);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 2px 16px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--brown);
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+            list-style: none;
+        }
+
+        .navbar-nav a {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--brown-mid);
+            border-radius: 8px;
+            transition: background 0.18s, color 0.18s;
+        }
+
+        .navbar-nav a:hover {
+            background: var(--cream-mid);
+            color: var(--brown);
+        }
+
+        .nav-signin a {
+            color: var(--brown);
+            border: 2px solid transparent;
+            border-radius: 10px;
+        }
+
+        .nav-signin a:hover {
+            border-color: var(--accent);
+            background: var(--cream);
+        }
+
+        .site-main {
+            flex: 1;
+        }
+
+        .site-footer {
+            background: var(--brown);
+            color: var(--cream-mid);
+            padding: 40px 32px 24px;
+            margin-top: auto;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand img {
+            width: 58px;
+            height: auto;
+        }
+
+        .footer-tagline {
+            font-size: 0.88rem;
+            opacity: 0.7;
+            max-width: 260px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--cream-mid);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.15s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            opacity: 0.6;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 24px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+            font-size: 0.82rem;
+            opacity: 0.55;
+            text-align: center;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+    <nav class="navbar">
+        <div class="navbar-inner">
+
+            <a href="~/HomePage.aspx" runat="server" class="navbar-brand">
+                <img src="~/Images/OWI SPARKLE EYE BIG.png" runat="server" alt="IndoSlang Logo" class="brand-logo" />
+                <span>IndoSlang</span>
+            </a>
+
+            <ul class="navbar-nav">
+
+                <% if (Session["UserID"] == null) { %>
+
+                    <!-- Visitor Navbar -->
+                    <li><a href="~/SlangDictionary.aspx" runat="server">Dictionary</a></li>
+                    <li><a href="~/OnBoarding.aspx" runat="server">Placement Quiz</a></li>
+                    <li><a href="~/Login.aspx" runat="server">Modules</a></li>
+                    <li><a href="~/About.aspx" runat="server">About</a></li>
+                    <li class="nav-signin"><a href="~/Login.aspx" runat="server">Sign In</a></li>
+
+                <% } else if (Session["RoleID"] != null && Session["RoleID"].ToString() == "1") { %>
+
+                    <!-- Admin Navbar -->
+                    <li><a href="~/AdminDashboard.aspx" runat="server">Dashboard</a></li>
+                    <li><a href="~/ManageUsers.aspx" runat="server">Manage Users</a></li>
+                    <li><a href="~/ManageContent.aspx" runat="server">Manage Content</a></li>
+                    <li><a href="~/ApproveBuddy.aspx" runat="server">Approve Buddies</a></li>
+                    <li><a href="~/ApproveSlang.aspx" runat="server">Approve Slang</a></li>
+                    <li><a href="~/SessionReports.aspx" runat="server">Reports</a></li>
+                    <li><a href="~/Logout.aspx" runat="server">Sign Out</a></li>
+
+                <% } else if (Session["RoleID"] != null && Session["RoleID"].ToString() == "2") { %>
+
+                    <!-- Member Navbar -->
+                    <li><a href="~/MemberDashboard.aspx" runat="server">Dashboard</a></li>
+                    <li><a href="~/Modules.aspx" runat="server">My Modules</a></li>
+                    <li><a href="~/SlangDictionary.aspx" runat="server">Dictionary</a></li>
+                    <li><a href="~/CommunityChat.aspx" runat="server">Community Chat</a></li>
+                    <li><a href="~/BookSession.aspx" runat="server">Book a Buddy</a></li>
+                    <li><a href="~/SuggestSlang.aspx" runat="server">Suggest Slang</a></li>
+                    <li><a href="~/MemberProfile.aspx" runat="server"><%= Session["UserName"] %></a></li>
+                    <li><a href="~/Logout.aspx" runat="server">Sign Out</a></li>
+
+                <% } else if (Session["RoleID"] != null && Session["RoleID"].ToString() == "3") { %>
+
+                    <!-- Buddy Navbar -->
+                    <li><a href="~/BuddyDashboard.aspx" runat="server">Dashboard</a></li>
+                    <li><a href="~/Modules.aspx" runat="server">Modules</a></li>
+                    <li><a href="~/SlangDictionary.aspx" runat="server">Dictionary</a></li>
+                    <li><a href="~/CommunityChat.aspx" runat="server">Community Chat</a></li>
+                    <li><a href="~/HostSession.aspx" runat="server">Host Session</a></li>
+                    <li><a href="~/ManageAvailability.aspx" runat="server">Availability</a></li>
+                    <li><a href="~/WithdrawEarnings.aspx" runat="server">Earnings</a></li>
+                    <li><a href="~/BuddyProfile.aspx" runat="server"><%= Session["UserName"] %></a></li>
+                    <li><a href="~/Logout.aspx" runat="server">Sign Out</a></li>
+
+                <% } %>
+
+            </ul>
+        </div>
+    </nav>
+
+    <main class="site-main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+
+            <div>
+                <div class="footer-brand">
+                    <img src="Images/OWI SPARKLE EYE BIG.png" alt="IndoSlang Logo" width="100"/>
+                    <span>IndoSlang</span>
+                </div>
+                <p class="footer-tagline">
+                    Speak like an Indonesian — fun, informal, and actually used.
+                </p>
+            </div>
+
+            <div>
+                <ul class="footer-links">
+                    <li><h4>Learn</h4></li>
+                    <li><a href="~/SlangDictionary.aspx" runat="server">Dictionary</a></li>
+                    <li><a href="~/Modules.aspx" runat="server">Modules</a></li>
+                    <li><a href="~/OnBoarding.aspx" runat="server">Placement Quiz</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="footer-links">
+                    <li><h4>Community</h4></li>
+                    <li><a href="~/CommunityChat.aspx" runat="server">Community Chat</a></li>
+                    <li><a href="~/BookSession.aspx" runat="server">Book a Buddy</a></li>
+                    <li><a href="~/ApplyBuddy.aspx" runat="server">Become a Buddy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="footer-links">
+                    <li><h4>Account</h4></li>
+
+                    <% if (Session["UserID"] == null) { %>
+                        <li><a href="~/Register.aspx" runat="server">Register</a></li>
+                        <li><a href="~/Login.aspx" runat="server">Sign In</a></li>
+                    <% } else { %>
+                        <li><a href="~/Logout.aspx" runat="server">Sign Out</a></li>
+                    <% } %>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2026 IndoSlang &mdash; APU Web Applications Group 11
+        </div>
+    </footer>
+
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
+
+</form>
+</body>
+</html>
